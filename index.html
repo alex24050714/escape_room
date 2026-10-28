@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>La Llave del Caballero - Escape Room Retro</title>
+  <meta name="description" content="Escape room retro en pixel art: un caballero medieval, un laberinto, tres pruebas y una llave.">
+  <link rel="icon" type="image/svg+xml" href="assets/key.svg">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="cabinet">
+    <header class="marquee">
+      <h1>LA LLAVE DEL CABALLERO</h1>
+      <p class="sub">- ESCAPE ROOM - 8 BITS -</p>
+    </header>
+
+    <main class="layout">
+      <section class="screen-wrap" aria-label="Pantalla del juego">
+        <div class="screen">
+          <canvas id="game" width="672" height="480" aria-label="Laberinto"></canvas>
+
+          <!-- Title screen -->
+          <div id="title" class="overlay">
+            <div class="box">
+              <h2>MAZMORRA OLVIDADA</h2>
+              <p>Un caballero despierta en un laberinto oscuro.<br>
+                 Resuelve las <b>3 pruebas</b>, encuentra la <b>llave</b> y huye por la puerta final.</p>
+              <button id="btn-start" class="btn big blink">PULSA PARA EMPEZAR</button>
+              <p class="small">Mover: flechas o WASD &nbsp;|&nbsp; Musica: M</p>
+            </div>
+          </div>
+
+          <!-- Trial / info modal -->
+          <div id="modal" class="overlay hidden" role="dialog" aria-modal="true">
+            <div class="box" id="modal-box"></div>
+          </div>
+
+          <!-- Win screen -->
+          <div id="win" class="overlay hidden">
+            <div class="box">
+              <h2 class="gold">ERES LIBRE!</h2>
+              <img src="assets/exit_open.svg" alt="" class="pix big-icon">
+              <p id="win-stats"></p>
+              <button id="btn-again" class="btn big">JUGAR OTRA VEZ</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="dialog" id="dialog" aria-live="polite"><span id="dialog-text"></span><i class="caret">&#9660;</i></div>
+      </section>
+
+      <aside class="panel">
+        <div class="card">
+          <h3>INVENTARIO</h3>
+          <div class="slots">
+            <div class="slot" id="slot-key" title="Llave"><img class="pix" src="assets/key.svg" alt="Llave"></div>
+            <div class="slot" id="slot-scroll" title="Pergamino"><img class="pix" src="assets/scroll.svg" alt="Pergamino"></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>PRUEBAS</h3>
+          <ul class="trials">
+            <li id="t1"><span class="tick"></span> Acertijo</li>
+            <li id="t2"><span class="tick"></span> Runas</li>
+            <li id="t3"><span class="tick"></span> Candado</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>ESTADO</h3>
+          <p class="stat">PASOS <b id="steps">0</b></p>
+          <p class="stat">TIEMPO <b id="time">00:00</b></p>
+        </div>
+
+        <button id="btn-mute" class="btn" aria-pressed="false">MUSICA: ON</button>
+      </aside>
+    </main>
+
+    <div class="dpad" aria-label="Controles tactiles">
+      <button data-dir="up" aria-label="Arriba">&#9650;</button>
+      <button data-dir="left" aria-label="Izquierda">&#9664;</button>
+      <button data-dir="down" aria-label="Abajo">&#9660;</button>
+      <button data-dir="right" aria-label="Derecha">&#9654;</button>
+    </div>
+
+    <footer class="foot">v0.1 - hecho con HTML, CSS y JavaScript - assets SVG</footer>
+  </div>
+  <div class="scanlines" aria-hidden="true"></div>
+
+  <script src="js/maze.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/game.js"></script>
+</body>
+</html>
