@@ -58,10 +58,10 @@
   }
 
   function reveal() {
-    for (let dy = -4; dy <= 4; dy++) for (let dx = -4; dx <= 4; dx++) {
+    for (let dy = -5; dy <= 5; dy++) for (let dx = -5; dx <= 5; dx++) {
       const x = S.x + dx, y = S.y + dy;
       if (x < 0 || y < 0 || x >= W || y >= H) continue;
-      if (Math.hypot(dx, dy) <= 3.3) S.seen[y][x] = true;
+      if (Math.hypot(dx, dy) <= 4.4) S.seen[y][x] = true;
     }
   }
 
@@ -393,7 +393,7 @@
     for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) {
       if (!S.seen[y][x]) continue;
       const d = Math.hypot(x - px, y - py);
-      let a = d < 2.1 ? 0 : d < 3.1 ? 0.28 : d < 4.1 ? 0.5 : 0.74;
+      let a = d < 2.7 ? 0 : d < 3.7 ? 0.25 : d < 4.7 ? 0.48 : 0.74;
       if (a > 0 && a < 0.74) a += flick;
       if (a > 0) { ctx.fillStyle = 'rgba(6,4,18,' + a.toFixed(3) + ')'; ctx.fillRect(x * T, y * T, T, T); }
     }
